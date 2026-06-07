@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "microforce",
+  "project_id": "74579d62-08b3-4113-951a-98b8854fc20f"
+}
