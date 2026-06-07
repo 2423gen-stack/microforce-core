@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: microforce-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-microforce_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password_here}
+      POSTGRES_DB: ${POSTGRES_DB:-microforce}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - microforce-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: microforce-backend
+    restart: unless-stopped
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=${POSTGRES_USER:-microforce_admin}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-secure_password_here}
+      - DB_NAME=${POSTGRES_DB:-microforce}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    ports:
+      - "18000:8000"
+    volumes:
+      - ./backend/src:/app/src
+    depends_on:
+      - db
+    networks:
+      - microforce-net
+
+networks:
+  microforce-net:
+    driver: bridge
