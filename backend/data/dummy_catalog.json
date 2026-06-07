@@ -1,0 +1,42 @@
+{
+  "catalog_id": "summer_2026",
+  "category": "electronics",
+  "items": [
+    {
+      "product_id": "P001",
+      "name": "Quantum Keyboard v3",
+      "price": 25000,
+      "specs": {
+        "switches": "Cherry MX Blue",
+        "layout": "US",
+        "wireless": true
+      },
+      "stock": 150
+    },
+    {
+      "product_id": "P002",
+      "name": "AI-Assisted Mouse",
+      "price": 12000,
+      "specs": {
+        "dpi": 25600,
+        "buttons": 8,
+        "wireless": true
+      },
+      "stock": 85
+    },
+    {
+      "product_id": "P003",
+      "name": "Holographic Display",
+      "price": 145000,
+      "specs": {
+        "resolution": "8K",
+        "refresh_rate": "240Hz"
+      },
+      "stock": 12
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-06-07T10:00:00Z",
+    "managed_by": "AI_Agent_01"
+  }
+}
