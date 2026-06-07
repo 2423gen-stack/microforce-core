@@ -18,20 +18,21 @@ For decades, Relational Database Management Systems (RDBMS) have dictated the ar
 しかし、AIが直接システムを自律駆動する「AIネイティブ時代」において、この人間中心のアーキテクチャは致命的なオーバーヘッドを生み出します。
 
 ```mermaid
-graph TD
-    subgraph Traditional_RDBMS_Architecture ["Traditional RDBMS Architecture"]
+flowchart TD
+    subgraph Traditional ["❌ Traditional RDBMS Architecture"]
+        direction TB
         A[Human Developer] -->|Writes SQL| B(ORM / Mapper)
-        B -->|Translates| C{Normalized Tables}
+        B -->|Translates| C[(Normalized Tables)]
         C -->|JOINs & Foreign Keys| D[Slow Retrieval]
     end
 
-    subgraph Semantic_KVS_Architecture ["Semantic KVS Architecture (Microforce-Coer)"]
-        X[AI Agent / Pandas] -->|Swallows Payload| Y(Semantic KVS)
+    Traditional ~~~ Microforce
+
+    subgraph Microforce ["✅ Semantic KVS Architecture (Microforce-Coer)"]
+        direction TB
+        X[AI Agent / Pandas] -->|Swallows Payload| Y[(Semantic KVS)]
         Y -->|Direct Retrieval| Z[Vectorized Memory State]
     end
-
-    style Traditional_RDBMS_Architecture fill:#f9f2f4,stroke:#333,stroke-width:2px
-    style Semantic_KVS_Architecture fill:#e1f5fe,stroke:#333,stroke-width:2px
 ```
 
 AIは、細切れにされたテーブルをSQLで組み立て直す処理を必要としません。AIにとって最も効率的なのは、必要なコンテキスト（スキーマ、データ、UI制約など）が**「多次元配列（JSONやVector）」としてひとまとめになった層（レイヤー）**を、直接メモリ上に展開することです。
